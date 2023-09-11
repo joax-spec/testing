@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2</title>
+        <style>
+            img {
+                box-shadow: 10px 10px 20px red;
+                border-radius: 10% 40% 30% 70%;
+            }
+            figure {
+                text-align: center;
+                width: 300px;
+                display: inline-block;
+            }
+            img.redonda{
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Random Picture</h1>
+        <div id="app">
+
+        </div>
+        <script>
+            const app = document.getElementById("app")
+            const url = "https://picsum.photos/id/"
+            const size = "/200/200"
+            const Picture = parametro => {
+                const src = url+parametro.id+size
+                // retorna una plantilla
+                return `
+                <figure>
+                <img src="${src}" alt="">
+                <figcaption>
+                    ${parametro.nombre}
+                </figcaption>
+                </figure>
+                `
+            }
+
+            app.innerHTML = Picture ({id:1, nombre: 'John'})
+            app.innerHTML += Picture ({id:2, nombre: 'Jane'})
+            app.innerHTML += Picture ({id:3, nombre: 'Joane'})
+
+            app.querySelectorAll("img").forEach( i => {
+                i.addEventListener("click", () => {
+                    i.classList.toggle("redonda")
+                })
+            })
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Importar el polyfill de Custom Elements para navegadores que no lo admiten nativamente -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.2.10/webcomponents-bundle.js"></script>
+  </head>
+  <body>
+    <!-- Definir el Web Component -->
+    <script>
+      // Crear una clase para el Web Component
+      class MiBoton extends HTMLElement {
+        constructor() {
+          super(); // Llama al constructor de la clase base
+          
+          // Crear un Shadow DOM
+          const shadow = this.attachShadow({ mode: 'open' });
+          
+          // Crear un elemento de botón en el Shadow DOM
+          const boton = document.createElement('button');
+          boton.textContent = '¡Haz clic en mí!';
+          
+          // Agregar un manejador de eventos al botón
+          boton.addEventListener('click', () => {
+            alert('¡Hiciste clic en el botón personalizado!');
+          });
+          
+          // Agregar el botón al Shadow DOM
+          shadow.appendChild(boton);
+        }
+      }
+
+      // Definir el elemento personalizado "mi-botón"
+      customElements.define('mi-botón', MiBoton);
+    </script>
+
+    <!-- Utilizar el Web Component -->
+    <mi-botón></mi-botón>
+
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Uso de Babel</title>
+        <style>
+            img {
+                box-shadow: 10px 10px 20px red;
+                border-radius: 10% 40% 30% 70%;
+            }
+            figure {
+                text-align: center;
+                width: 300px;
+                display: inline-block;
+            }
+            img.redonda{
+                border-radius: 50%;
+            }
+        </style>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>        
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <h1>Random Picture</h1>
+        <div id="app">
+
+        </div>
+        <script type="text/babel">
+            const app = document.getElementById("app")
+            const useState = React.useState
+            
+            const url = "https://picsum.photos/id/"
+            const size = "/200/200"
+            const Picture = parametro => {
+                // se deconstruye el estado en [0] estado, [1] modo de activación
+                // en este caso true será que tenga el estilo gotita redondeada
+                const [enabled, setEnable] = useState(true)
+                // con base en el estado definimos la clase del componente de enabled si esta activo '' en otro 'redonda'
+                const className = enabled ? '' : 'redonda'
+                const src = url+parametro.id+size
+                return (
+                    <figure>
+                        <img 
+                            // onClick={
+                            //     e => {
+                            //         e.target.classList.toggle("redonda")
+                            //     }
+                            // }
+                            //className={'redonda'}
+
+                            // en lugar de depedender de target se usará useState del componente
+                            // al dar clic modificará el estado siendo este la negación del estado actual
+                            onClick = {
+                                () => setEnable(!enabled)
+                            }
+                            className = {className}
+                        src={src} alt="" />
+                        <figcaption>
+                            {parametro.nombre}
+                        </figcaption>
+                    </figure>
+
+                )
+
+            }
+
+            const root = ReactDOM.createRoot(app)
+            
+            root.render( 
+                <div>
+                    <Picture id={1} nombre="John" />
+                    <Picture id={2} nombre="Jane"/>
+                </div>
+             )
+            
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2</title>
+        <style>
+            img {
+                box-shadow: 10px 10px 20px red;
+            }
+            figure {
+                text-align: center;
+                /* 5 */
+                width: 300px;
+                /* 6 */
+                /* display: inline; */
+                /* 7 */
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 1 img es un elemento inline -->
+        <!-- 2 el texto es un elemento inline  -->
+        <!-- 3 figure es un elemento de bloque y tiene padding -->
+        <!-- 4 figcaption igualmente es un elemento de bloque -->
+        <!-- 5 al agregar un width en figure aunque el elemento es en bloque definimos que tanto de la pantalla ocupa, pero sigue siendo de bloque-->
+        <!-- 6 al agregar display podemos modificar el comportamiento por default de un elemento, aquí width y height no se toman en cuenta 
+            en este caso no observamos tanto cambio debido a que figcaption también es en bloque, pero si lo comentamos veremos que figure ahora es inline junto con el texto sin figcaption-->
+        <!-- 7 al definir el display como inline-block ahora los componentes se junta pues el width y el hight ya se toman en cuenta -->
+        <h1>Random Picture</h1>
+        <!-- 3 -->
+        <figure>
+            <!-- 1 -->
+            <img src="https://picsum.photos/id/1/200/200" alt="">
+            <!-- 4 -->
+            <figcaption>
+                <!-- 2 -->
+                John
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="https://picsum.photos/id/2/200/200" alt="">
+            <figcaption>
+                Jane
+            </figcaption>
+        </figure>
+    </body>
+</html>
