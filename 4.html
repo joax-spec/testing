@@ -46,11 +46,19 @@
             app.innerHTML += Picture ({id:2, nombre: 'Jane'})
             app.innerHTML += Picture ({id:3, nombre: 'Joane'})
 
-            app.querySelectorAll("img").forEach( i => {
-                i.addEventListener("click", () => {
-                    i.classList.toggle("redonda")
-                })
-            })
+            // app.querySelectorAll("img").forEach( i => {
+            //     i.addEventListener("click", () => {
+            //         i.classList.toggle("redonda")
+            //     })
+            // })
+
+            const lista = app.querySelectorAll("img")
+            for (let index = 0; index < lista.length; index++) {
+                lista[index].addEventListener("click", () =>{
+                    lista[index].classList.toggle("redonda")
+                });   
+            }
+
         </script>
     </body>
 </html>
