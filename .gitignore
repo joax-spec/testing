@@ -1,0 +1,22 @@
+# Dependencias generadas por npm
+/node_modules
+
+# Archivos y directorios generados durante la construcción
+/build
+/dist
+
+# Archivo de registro de errores
+npm-debug.log*
+
+# Archivos temporales
+*.swp
+*~
+
+# Archivos de configuración de entorno local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de caché
+.cache/

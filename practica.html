@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practica</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: large;
+        }
+
+        html, body{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        fieldset {
+            width: 500px;
+            margin: 0 auto;
+        }
+        input {
+            width : 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        input[type="submit"]{
+            color: white;
+            font-weight: bold;
+            background-color: lightblue;
+        }
+        #canvas{
+            border: 1px solid;
+            /* width: 300px; */
+            height: 200px;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 600px;
+            max-height: 200px;
+            overflow: hidden;
+        }
+        div>img{
+            max-width: 50%;
+            /* height: 50%; */
+            border-radius: 40%;
+            /* width: auto;
+            height: auto; */
+            flex: 1;
+        }
+        /* div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+        } */
+         /* width: auto;
+            height: auto; */
+
+    </style>
+</head>
+<body>
+    <SPAN id="reset">
+        <fieldset>
+            <form action="">
+                <input type="text" name="campo" id="campo" placeholder="Ingreso un ID">
+                <input type="submit" value="cargar">
+            </form>
+        </fieldset>
+        <div id="app"></div>
+        <div id="canvas"></div>
+        <button><</button>
+        <button>></button>
+    </SPAN>
+    <script>
+        document.querySelector("input[type=submit]").addEventListener("click",xx)
+        document.getElementById("canvas").addEventListener("dragover", (e)=>e.preventDefault())
+        document.getElementById("canvas").addEventListener("drop", (e)=>{
+            e.preventDefault()
+            const objeto = e.target
+            console.log(objeto)
+            console.log("Y "+objeto.parentNode.parentNode.tagName)
+            //verificamos que el objeto padre no sea div, para que no se encimen las imágenes
+            imagen = document.querySelector("img")
+            // if (objeto.parentNode.tagName != "SPAN"){
+            if(objeto.tagName == "DIV") {
+                objeto.appendChild(imagen)
+                imagen.classList.add("pio")
+            }
+        })
+
+        const app = document.getElementById("app")
+        const url = "https://picsum.photos/id/"
+        const size = "/200/200"
+        const Picture = (param) => {
+            const src = url+param+size
+            return `
+                <figure>
+                    <img src="${src}" draggable="true">
+                </figure>
+            `
+        }
+
+        function xx(param){
+            param.preventDefault()
+            let campo = document.getElementById("campo")
+            let lista = campo.value.split(" ")
+            lista.forEach(e => {
+                app.innerHTML += Picture(e) 
+            });
+            campo.value = ''
+        }
+    </script>
+</body>
+</html>
